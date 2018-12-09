@@ -19,28 +19,28 @@ BLINK="\e[5m"
 #echo -e "${RED}RED $RESET_TEXT\n"
 echo -e "${BLINK}BLINK $RESET_BLINK"
 
-# print the regular text
-# color codes 31 thru 37
+# print the regular text colors
 for i in {31..37}; do
 	echo -en "\e[${i}m\\\e[${i}m\t"
 done
 
 echo ""
 
-# print the light text
-# color codes 90 thru 97
+# print the light text colors
 for i in {90..97}; do
 	echo -en "\e[${i}m\\\e[${i}m\t"
 done
 
 echo ""
 
+# print highlighted text
 for i in {41..46}; do
 	echo -en "${BLACK}\e[${i}m\\\e[${i}m${RESET_BKGRD}\t"
 done
 
 echo ""
 
+# print hightlighted text with light colors
 for i in {100..107}; do
 	echo -en "${BLACK}\e[${i}m\\\e[${i}m${RESET_BKGRD}\t"
 done
