@@ -8,7 +8,7 @@ import subprocess
 script = ""
 
 # check the ouput for certain keywords
-output = subprocess.check_output("./{}".format(script), shell=True)
+output = subprocess.check_output("./{}".format(script), shell=False)
 
 # keyword to check for 
 keyword = ""
