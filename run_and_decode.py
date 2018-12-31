@@ -3,8 +3,7 @@ import subprocess
 import sys
 from pathlib import Path        # to make sure the file exists before executing
 
-# This python script will execute another script and save the output
-# into a variable for further use
+# template for executing another script and saving the output into a variable for further use
 
 # usage: python run_and_decode.py
 
