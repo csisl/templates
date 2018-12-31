@@ -2,7 +2,8 @@
 import subprocess
 
 # usage: python subp.py
-# This program will execute the script specified and check the output for a certain keyword
+
+# template to execute a script and check the output for a certain keyword
 
 # script to be executed
 script = ""
