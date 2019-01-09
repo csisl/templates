@@ -17,6 +17,11 @@ Templates for reading files for the following languages:
 * Java
 * Bash
 
+### /fileWriting
+Templates for writing to files for the following languages:
+
+* Perl
+
 ### /sockets
 Template for sockets for the following languages:
 
