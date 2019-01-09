@@ -15,6 +15,7 @@ Templates for reading files for the following languages:
 * Python
 * C
 * Java
+* Bash
 
 ### /sockets
 Template for sockets for the following languages:
