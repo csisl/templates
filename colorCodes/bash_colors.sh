@@ -1,48 +1,63 @@
 #!/bin/bash
+set -e
 
-RESET_TEXT="\e[39m"
-RESET_BKGRD="\e[49m"
-RESET_BLINK="\e[0m"
+# script to run after installing Ubuntu for quick customizations 
+# usage: ./linux-setup
 
-BLACK="\e[30m"
-RED="\e[31m"
-GREEN="\e[32m"
-YELLOW="\e[33m"
-BLUE="\e[34m"
-MAG="\e[35m"
-CYAN="\e[36m"
-GRAY="\e[37m"
+# color codes 
+CRED='\e[31m'
+CGREEN='\e[32m'
+CBLUE='\e[34m'
+CRESET='\e[39m'
 
-BLINK="\e[5m"
+# first ensure the system is up to date
+update_system(){
+	sudo apt-get update
+	sudo apt-get upgrade
+}
 
-# one sample echo statement with variables
-#echo -e "${RED}RED $RESET_TEXT\n"
-echo -e "${BLINK}BLINK $RESET_BLINK"
+# create vimrc file 
+create_vimrc(){
+	echo -e "${CGREEN}CREATING .vimrc FILE${CRESET}"
+	echo "set ai sw=4" > ~/.vimrc_TEST
+	echo "set number" >> ~/.vimrc_TEST
+	echo "set smartindent" >> ~/.vimrc_TEST
+	echo "syntax on" >> ~/.vimrc_TEST
+	echo "filetype indent on" >> ~/.vimrc_TEST
+	echo "set showmatch" >> ~/.vimrc_TEST
+	echo "set hlsearch" >> ~/.vimrc_TEST
+	echo "set tabstop=4" >> ~/.vimrc_TEST
+}
 
-# print the regular text colors
-for i in {31..37}; do
-	echo -en "\e[${i}m\\\e[${i}m\t"
-done
+# install java
+install_java() {
+	echo -e "${CGREEN}INSTALLING JAVA 8$CRESET"
+	sudo add-apt-repository ppa:webupd8team/java
+	sudo apt-get update
+	sudo apt-get install oracle-java8-installer
+	sudo apt-get install oracle-java8-set-default
+	# verify the installation version
+	java -version
+}
 
-echo ""
+# install spotify
+install_spotify(){
+	echo -e "${CGREEN}INSTALLING SPOTIFY$CRESET"
+	# 1. Add the Spotify repository signing keys to be able to verify downloaded packages
+	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0DF731E45CE24F27EEEB1450EFDC8610341D9410
+	# 2. Add the Spotify repository
+	echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+	# 3. Update list of available packages
+	sudo apt-get update
+	# 4. Install Spotify
+	sudo apt-get install spotify-client
+}
 
-# print the light text colors
-for i in {90..97}; do
-	echo -en "\e[${i}m\\\e[${i}m\t"
-done
+main() {
+	update_system
+	create_vimrc
+	install_java
+	install_spotify
+}
 
-echo ""
-
-# print highlighted text
-for i in {41..46}; do
-	echo -en "${BLACK}\e[${i}m\\\e[${i}m${RESET_BKGRD}\t"
-done
-
-echo ""
-
-# print hightlighted text with light colors
-for i in {100..107}; do
-	echo -en "${BLACK}\e[${i}m\\\e[${i}m${RESET_BKGRD}\t"
-done
-
-echo ""
+main
