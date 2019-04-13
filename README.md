@@ -22,6 +22,12 @@ Templates for writing to files for the following languages:
 
 * Perl
 
+### /misc
+Templates that didn't have a good home in one of the other folders. Includes:
+
+* Python
+  * argparse
+
 ### /sockets
 Template for sockets for the following languages:
 
